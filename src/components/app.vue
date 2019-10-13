@@ -4,7 +4,7 @@
  * @Author: pengjie.ye
  * @Date: 2019-10-13 16:34:53
  * @LastEditors: pengjie.ye
- * @LastEditTime: 2019-10-13 17:39:55
+ * @LastEditTime: 2019-10-13 17:51:33
  -->
 <template>
     <div>
@@ -14,6 +14,7 @@
         <router-link to="/user/user_2">to user2</router-link>
     <router-view></router-view>
     </div>
+    
 </template>
 <script>
 export default {
