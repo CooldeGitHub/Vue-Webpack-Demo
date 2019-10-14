@@ -2,10 +2,14 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-    entry:'./src/app.js',
+    // entry:['./src/app.js','./src/router_view.js'],
+    entry:{
+        app:'./src/app.js',
+        router_view:'./src/router_view.js'
+    },
     output:{
         path:__dirname + '/dist',
-        filename:'app.bundle.js'
+        filename:'[name].bundle.js'
     },
     devServer:{
         port:8080,
@@ -13,7 +17,14 @@ module.exports = {
     },
     plugins:[
         new HtmlWebpackPlugin({
-        template:"./src/index.html"
+            chunks:['app'],
+            filename:"index.html",
+            template:"./src/index.html"
+        }),
+        new HtmlWebpackPlugin({
+            chunks:['router_view'],
+            filename:"index2.html",
+            template:'./src/index2.html'
         }),
         new VueLoaderPlugin(),
     ],
