@@ -37,7 +37,12 @@ const User = {
                     <span>this is user</span>
                     <span>dynamic segment {{$route.params.id}}</span>
                     <router-view></router-view>
-                </div>`
+                </div>`,
+    beforeRouteEnter:function(to,from,next){
+        next((vm) => {
+            var data = vm.$st
+        })
+    }
 }
 
 const userProfile = {
@@ -80,8 +85,27 @@ var router = new VueRouter({
     routes : Routers
 })
 
+router.beforeEach(function(to,from,next){
+    var isLogin = sessionStorage.getItem("isLogin")
+    // ps：isLogin取出来是String类型 而不是boolean 所以后面比较的时候
+    // 得比较字符串值 而不是boolean值
+    if(to.path != "/home/home_1" && isLogin == "false" ){
+        next('/home/home_1')
+    }else{
+        next()
+    }
+})
+
+
+
 var vm = new Vue({
     el:'#app',
+    data:{
+        isLogin:false
+    },
     render: c=>c(App),
-    router
+    router,
+    created:function(){
+        sessionStorage.setItem("isLogin",false);
+    }
 })

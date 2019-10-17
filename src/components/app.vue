@@ -13,6 +13,7 @@
         <router-link to="/user/user_1">to user1</router-link>
         <router-link to="/user/user_2">to user2</router-link>
     <router-view></router-view>
+    <button @click="login">点击模拟登录</button>
     </div>
     
 </template>
@@ -21,6 +22,12 @@ export default {
     data : function(){
         return {
             post:'Hello Vue-Webpack'
+        }
+    },
+    methods:{
+        //用来模拟登陆 尝试导航守卫
+        login:function(){
+            sessionStorage.setItem("isLogin",true);
         }
     }
 }
