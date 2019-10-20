@@ -5,7 +5,8 @@ module.exports = {
     // entry:['./src/app.js','./src/router_view.js'],
     entry:{
         app:'./src/app.js',
-        router_view:'./src/router_view.js'
+        router_view:'./src/router_view.js',
+        render:'./src/render.js'
     },
     output:{
         path:__dirname + '/dist',
@@ -25,6 +26,11 @@ module.exports = {
             chunks:['router_view'],
             filename:"index2.html",
             template:'./src/index2.html'
+        }),
+        new HtmlWebpackPlugin({
+            chunks:['render'],
+            filename:"index3.html",
+            template:'./src/index3.html'
         }),
         new VueLoaderPlugin(),
     ],
